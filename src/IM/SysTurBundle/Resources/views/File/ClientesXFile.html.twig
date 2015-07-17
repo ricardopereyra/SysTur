@@ -1,0 +1,27 @@
+{% if error!='' %}
+    <div class="bg-danger">
+        <p><small>Ha ocurrido un error al agregar el cliente.<br /><strong>Error: </strong>{{ error }}</small></p>
+    </div>
+{% endif %}
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr>
+        <th>Cliente</th>
+        <th>DNI</th>
+        <th>Documentos</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for cf in file.clientesfile %}
+        <tr>
+            <td>{{ cf.cliente.apellido }}, {{ cf.cliente.nombres }}</td>
+            <td>{{ cf.cliente.dni }}</td>
+            <td>documentos</td>
+            <td>
+                <i class="fa fa-times buttonable btndelete" title="Eliminar" onclick="deleteClienteXFile(this)"><input type="hidden" value="{{ cf.cliente.id }}"/></i>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,206 @@
+{% extends 'IMSysTurBundle:Default:base.html.twig' %}
+
+{% block title %}
+    <title>{{ parameters.sysName}} :: Editar Cliente</title>
+{% endblock %}
+
+{% block content %}
+<div class="banner-in">
+    <div class="container">
+	<div class="banner-top">
+            <h6><a href="index.html">EDITAR CLIENTE</a> / <span>ADMINISTRACION</span></h6>
+	</div>
+    </div>
+</div>
+
+<div class="content">
+        <div class="container">
+                <div class="content-top">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Ut in consectetur est, sit amet tincidunt leo. 
+                        Proin sit amet ultrices ligula. Phasellus nec elementum erat. 
+                        In hac habitasse platea dictumst. 
+                        In consequat vel ex vel facilisis. 
+                        Morbi iaculis dictum varius. 
+                        Curabitur ut orci a erat viverra cursus ut at ligula. 
+                        Integer ut venenatis mauris, nec ultrices justo.
+                    </p>
+                    <p>&nbsp;</p>
+                    
+                    {# Headers de las tabs #}
+                    <div id="tabs" class="tabs">
+                        <div class="tab-0">
+                                <input type="radio" id="tab-0" name="tab-group" checked>
+                                <label for="tab-0">Datos Personales</label>
+                        </div>
+                        <div class="tab-1">
+                                <input type="radio" id="tab-1" name="tab-group" >
+                                <label for="tab-1">Documentación</label>
+                        </div>
+                        <div class="tab-2">
+                                <input type="radio" id="tab-2" name="tab-group" checked}>
+                                <label for="tab-2">Otros datos</label>
+                        </div>
+                    </div>
+                    
+                    {# Contenido de las tabs #}
+                    <div id="tabs-content">
+                        <div id="content-tab-0" class="tab-content" style="display: block;">
+                            <div class="bevel2">
+                                <div class="contact-grid">
+                                    {# form start #}
+                                    {{ form_start(edit_form) }}
+                                    
+                                    {# errores #}
+                                    <div class="errores">
+                                        {{ form_errors(edit_form) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-6">
+                                        {{ form_label(edit_form.apellido) }}
+                                        {{ form_widget(edit_form.apellido) }}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form_label(edit_form.nombres) }}
+                                        {{ form_widget(edit_form.nombres) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.dni) }}
+                                        {{ form_widget(edit_form.dni) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.cuil) }}
+                                        {{ form_widget(edit_form.cuil) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.fechaNacimiento, 'Fecha de Nacimiento') }}
+                                        {{ form_widget(edit_form.fechaNacimiento, {'attr': {'class': 'fecha'}}) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-9">
+                                        {{ form_label(edit_form.direccion) }}
+                                        {{ form_widget(edit_form.direccion) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.cp, 'Código Postal') }}
+                                        {{ form_widget(edit_form.cp) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.localidad) }}
+                                        {{ form_widget(edit_form.localidad) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.provincia) }}
+                                        {{ form_widget(edit_form.provincia) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.pais) }}
+                                        {{ form_widget(edit_form.pais) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.tipoCliente, 'Tipo de Cliente') }}
+                                        {{ form_widget(edit_form.tipoCliente) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.categoria) }}
+                                        {{ form_widget(edit_form.categoria) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.tipoIva, 'Situación ante el IVA') }}
+                                        {{ form_widget(edit_form.tipoIva) }}
+                                    </div>
+                                    
+                                    {# bloque de fin de formulario #}
+                                    <div class="col-12">
+                                        <div class="hide">{{ form_rest(edit_form) }}</div>
+                                        <p>&nbsp;</p>
+                                        <button class="sf-button" type="submit">Guardar datos</button>
+                                        <a class="sf-button" href="{{ path('IMSysTurBundle_ListarClientes', {'filter':filter}) }}">Volver sin grabar</a>
+                                    </div>
+                                    
+                                    {# fin del formulario #}
+                                    {{ form_end(edit_form) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="content-tab-1" class="tab-content" style="display: none">
+                            <div class="bevel2">
+                                <table class="records_list">
+                                    <thead>
+                                        <tr>
+                                            <th>Documento</th>
+                                            <th>Número</th>
+                                            <th>Fecha de Emisión</th>
+                                            <th>Fecha de vencimiento</th>
+                                            <th>Descripción</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for documento in documentos %}
+                                        <tr>
+                                            <td>{{ documento.tipoDocumento.nombre }}</td>
+                                            <td>{{ documento.numero }}</td>
+                                            <td>{% if documento.fechaEmision %}{{ documento.fechaEmision|date('d-m-Y') }}{% endif %}</td>
+                                            <td>{% if documento.fechaVencimiento %}{{ documento.fechaVencimiento|date('d-m-Y') }}{% endif %}</td>
+                                            <td>{{ documento.descripcion }}</td>
+                                            <td>
+                                                <a href="{{path('IMSysTurBundle_editDocumento',{'id':documento.id,'filter':filter})}}">Editar</a> |
+                                                <a href="{{ path('IMSysTurBundle_deleteDocumento',{'id':documento.id, 'filter':filter}) }}">Borrar</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                
+                                {# section botones inferiores #}
+                                <p>&nbsp;</p>
+                                <a href="{{ path('IMSysTurBundle_newDocumento',{'idCliente':entity.id, 'filter':filter}) }}" class="sf-button">Agregar nuevo documento</a>
+                                
+                            </div>
+                        </div>
+
+                        <div id="content-tab-2" class="tab-content" style="display: none;">
+                            <div class="bevel2">
+                                <table class="records_list">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Número</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for contacto in contactos %}
+                                        <tr>
+                                            <td>{{ contacto.tipoContacto.nombre }}</td>
+                                            <td>{{ contacto.data }}</td>
+                                            <td>
+                                                <a href="{{path('IMSysTurBundle_editContacto',{'id':contacto.id,'filter':filter})}}">Editar</a> |
+                                                <a href="{{path('IMSysTurBundle_deleteContacto',{'id':contacto.id,'filter':filter})}}">Borrar</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                
+                                {# section botones inferiores #}
+                                <p>&nbsp;</p>
+                                <a href="{{ path('IMSysTurBundle_newContacto',{'idCliente':entity.id, 'filter':filter}) }}" class="sf-button">Agregar nuevo contacto</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                                
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,271 @@
+{% extends 'IMSysTurBundle:Default:base.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block title %}
+    <title>{{ parameters.sysName}} :: Editar File</title>
+{% endblock %}
+
+{% block content %}
+<div class="banner-in">
+    <div class="container">
+        <div class="banner-top">
+            <h6><a href="index.html">EDITAR FILE</a> / <span>ADMINISTRACION</span></h6>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="content-top">
+            {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+            <!-- Bloque superior -->
+            <div id="top-container" class="col-md-12">
+                <div class="col-md-6 form-group">
+                    {{ form_row(form.nombre) }}
+                </div>
+                <div class="col-md-6 form-group">
+                    {{ form_row(form.destino) }}
+                </div>
+                <div class="col-md-6 form-group">
+                    {{ form_row(form.partida) }}
+                </div>
+                <div class="col-md-6 form-group">
+                    {{ form_row(form.retorno) }}
+                </div>
+            </div>
+            <!-- Bloque del centro -->
+            <div class="medium-container">
+                <!-- Bloque izquierdo -->
+                <div id="left-container" class="col-md-8">
+                    <div id="tablaClientesXFile">
+                        {{ render(controller('IMSysTurBundle:File:getClientesXFile', {'id':file.id} )) }}
+                    </div>
+                    <input type="hidden" id="txtFILE" value="{{ file.id }}" />
+                    <a id="btnNuevoCliente" class="btn btn-primary btn-xs">Agregar Nuevo Cliente</a>
+                </div>
+                <!-- Bloque derecho -->
+                <div id="right-container" class="col-md-4">
+                    <div id="tablaSeguimientoFile">
+                        {{ render(controller('IMSysTurBundle:File:getSeguimientoFile', {'id':file.id} )) }}
+                    </div>
+                    <a id="btnNuevoSeguimiento" class="btn btn-primary btn-xs">Agregar Evento</a>
+                </div>
+            </div>
+            <!-- Bloque inferior -->
+            <div id="bottom-container" class="col-md-12">Bottom Container</div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        function deleteClienteXFile(e) {
+            var id = $(e).children(":input").val();
+            $.ajax({
+                url: "{{parameters.sysHost}}" + "/admin/file/"+encodeURIComponent({{ file.id }})+"/deleteclientesxfile",
+                data: "idcliente="+id,
+                type: 'POST',
+                success: function(data)
+                {
+                    $('#tablaClientesXFile').html(data);
+                }
+            });
+        }
+
+        function viewSeguimientoFile(e) {
+            var empleado = $(e).children("#empleado").val();
+            var descripcion = $(e).children("#descripcion").val();
+            var fecha = $(e).children("#fecha").val();
+            var tipo = $(e).children("#tipo").val();
+
+            mensaje =  '<div class="row">  ';
+            mensaje += '    <div class="col-md-12"> ';
+            mensaje += '        <p>No es posible modificar un evento. Si desea agregar comentarios debe crear un nuevo evento.</p><br /> '
+            mensaje += '        <form class="form-horizontal"> ';
+            mensaje += '            <div class="form-group"> ';
+            mensaje += '                <div class="col-md-12"><p>Empleado que registró el evento: <input type="text" disabled value="'+empleado+'" /> </p></div> ';
+            mensaje += '            </div> ';
+            mensaje += '            <div class="form-group"> ';
+            mensaje += '                <div class="col-md-2"></div> ';
+            mensaje += '                <div class="col-md-8"> ';
+            mensaje += '                   <label class="control-label" for="txtFecha">Fecha</label> ';
+            mensaje += '                    <input type="text" disabled id="txtFecha" value="'+fecha+'" /> ';
+            mensaje += '                </div> ';
+            mensaje += '            <div class="col-md-2"></div> ';
+            mensaje += '            </div> ';
+            mensaje += '            <div class="form-group"> ';
+            mensaje += '                <div class="col-md-2"></div> ';
+            mensaje += '                <div class="col-md-8"> ';
+            mensaje += '                   <label class="control-label" for="txtTipo">Tipo de Evento</label> ';
+            mensaje += '                    <select id="txtTipo" disabled class="form-control">';
+            mensaje += '                        <option selected value="">'+tipo+'</option>';
+            mensaje += '                    </select>';
+            mensaje += '                </div> ';
+            mensaje += '            <div class="col-md-2"></div> ';
+            mensaje += '            </div> ';
+            mensaje += '            <div class="form-group"> ';
+            mensaje += '                <div class="col-md-2"></div>';
+            mensaje += '                <div class="col-md-8"> ';
+            mensaje += '                <label class="control-label" for="txtApellido">Descripcion</label>';
+            mensaje += '                    <textarea disabled class="form-control">'+descripcion+'</textarea>';
+            mensaje += '                </div>';
+            mensaje += '                <div class="col-md-2"></div>';
+            mensaje += '            </div>';
+            mensaje += '        </form>';
+            mensaje += '    </div>';
+            mensaje += '</div>';
+            bootbox.dialog({
+                        title: "Ver un evento",
+                        message: mensaje,
+                        buttons: {
+                            success: {
+                                label: "Cerrar",
+                                className: "btn-success",
+                            }
+                        }
+                    }
+            );
+        }
+
+        $(document).ready(function(){
+            $('#btnNuevoCliente').click(function(event){
+                mensaje =  '<div class="row">  ';
+                mensaje += '    <div class="col-md-12"> ';
+                mensaje += '        <p>Ingrese el documento del usuario a agregar al file. Si el usuario ya existe se ignorarán nombres y apellidos.</p><br />';
+                mensaje += '        <form class="form-horizontal"> ';
+                mensaje += '            <div class="form-group"> ';
+                mensaje += '                <label class="col-md-4 control-label" for="txtDni">Documento</label> ';
+                mensaje += '                <div class="col-md-4"> ';
+                mensaje += '                    <input id="txtDni" name="txtDni" type="text" placeholder="DNI" class="form-control input-md"> ';
+                mensaje += '                    <span class="help-block">Ingrese su número de documento</span> ';
+                mensaje += '                </div> ';
+                mensaje += '            </div> ';
+                mensaje += '            <div class="form-group"> ';
+                mensaje += '                <div class="col-md-2"></div>';
+                mensaje += '                <div class="col-md-4"> ';
+                mensaje += '                <label class="control-label" for="txtApellido">Apellido</label>';
+                mensaje += '                    <input type="text" name="txtApellido" id="txtApellido" placeholder="Ingrese el apellido" class="form-control input-md"/>';
+                mensaje += '                </div>';
+                mensaje += '                <div class="col-md-4">';
+                mensaje += '                    <label class="control-label" for="txtNombres">Nombres</label>';
+                mensaje += '                    <input type="text" name="txtNombres" id="txtNombres" placeholder="Ingrese el nombre" class="form-control input-md"/> ';
+                mensaje += '                </div>';
+                mensaje += '                <div class="col-md-2"></div>';
+                mensaje += '            </div>';
+                mensaje += '        </form>';
+                mensaje += '    </div>';
+                mensaje += '</div>';
+
+                event.preventDefault();
+                bootbox.dialog({
+                            title: "Agregar un nuevo usuario",
+                            message: mensaje,
+                            buttons: {
+                                success: {
+                                    label: "Aceptar",
+                                    className: "btn-success",
+                                    callback: function () {
+                                        var dni = $('#txtDni').val();
+                                        var apellido = $('#txtApellido').val();
+                                        var nombres = $('#txtNombres').val();
+                                        // Ejecutamos el script por AJAX
+                                        $.ajax({
+                                            url: "{{parameters.sysHost}}" + "/admin/file/"+encodeURIComponent({{ file.id }})+"/getclientesxfile",
+                                            data: "dni="+dni+"&apellido="+apellido+"&nombres="+nombres,
+                                            type: 'POST',
+                                            success: function(data)
+                                            {
+                                                $('#tablaClientesXFile').html(data);
+                                            }
+                                        });
+                                    }
+                                },
+                                main: {
+                                    label: "Cancelar",
+                                    className: "btn-primary"
+                                }
+                            }
+                        }
+                );
+            });
+
+            $('#btnNuevoSeguimiento').click(function(event){
+                mensaje =  '<div class="row">  ';
+                mensaje += '    <div class="col-md-12"> ';
+                mensaje += '        <p>Ingrese los datos del evento para poder registrarlo en el sistema.</p><br /> '
+                mensaje += '        <form class="form-horizontal"> ';
+                mensaje += '            <div class="form-group"> ';
+                mensaje += '                <div class="col-md-2"></div> ';
+                mensaje += '                <div class="col-md-8"> ';
+                mensaje += '                    <label for="txtEmpleado">Empleado que registró el evento</label>';
+                mensaje += '                    <select id="txtEmpleado" class="form-control"> ';
+                {% for empleado in empleados %}
+                mensaje += '                        <option value="{{ empleado.id }}">{{ empleado.apellido }}, {{ empleado.nombre }}</option>';
+                {% endfor %}
+                mensaje += '                    </select> ';
+                mensaje += '                </div> ';
+                mensaje += '                <div class="col-md-2"></div> ';
+                mensaje += '            </div> ';
+                mensaje += '            <div class="form-group"> ';
+                mensaje += '                <div class="col-md-2"></div> ';
+                mensaje += '                <div class="col-md-8"> ';
+                mensaje += '                   <label class="control-label" for="txtTipo">Tipo de Evento</label> ';
+                mensaje += '                    <select id="txtTipo" class="form-control">';
+                {% for tipo in tipoSeguimiento %}
+                mensaje += '                        <option value="{{ tipo.id }}">{{ tipo.nombre }}</option>';
+                {% endfor %}
+                mensaje += '                    </select>';
+                mensaje += '                </div> ';
+                mensaje += '                <div class="col-md-2"></div> ';
+                mensaje += '            </div> ';
+                mensaje += '            <div class="form-group"> ';
+                mensaje += '                <div class="col-md-2"></div>';
+                mensaje += '                <div class="col-md-8"> ';
+                mensaje += '                <label class="control-label" for="txtDescripcion">Descripcion</label>';
+                mensaje += '                    <textarea id="txtDescripcion" class="form-control"></textarea>';
+                mensaje += '                </div>';
+                mensaje += '                <div class="col-md-2"></div>';
+                mensaje += '            </div>';
+                mensaje += '        </form>';
+                mensaje += '    </div>';
+                mensaje += '</div>';
+
+                event.preventDefault();
+                bootbox.dialog({
+                            title: "Agregar un nuevo evento",
+                            message: mensaje,
+                            buttons: {
+                                success: {
+                                    label: "Aceptar",
+                                    className: "btn-success",
+                                    callback: function () {
+                                        var empleado = $('#txtEmpleado').val();
+                                        var tipo = $('#txtTipo').val();
+                                        var descripcion = $('#txtDescripcion').val();
+                                        // Ejecutamos el script por AJAX
+                                        $.ajax({
+                                            url: "{{parameters.sysHost}}" + "/admin/file/"+encodeURIComponent({{ file.id }})+"/getseguimientofile",
+                                            data: "empleado="+empleado+"&tipo="+tipo+"&descripcion="+descripcion,
+                                            type: 'POST',
+                                            success: function(data)
+                                            {
+                                                $('#tablaSeguimientoFile').html(data);
+                                            }
+                                        });
+                                    }
+                                },
+                                main: {
+                                    label: "Cancelar",
+                                    className: "btn-primary"
+                                }
+                            }
+                        }
+                );
+            });
+
+        });
+    </script>
+{% endblock %}

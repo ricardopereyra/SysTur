@@ -1,0 +1,30 @@
+{% if error!='' %}
+    <div class="bg-danger">
+        <p><small>Ha ocurrido un error al agregar el seguimiento.<br /><strong>Error: </strong>{{ error }}</small></p>
+    </div>
+{% endif %}
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+    <tr>
+        <th>Fecha</th>
+        <th>Evento</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for seguimiento in file.seguimientos %}
+        <tr>
+            <td>{{ seguimiento.fechaAlta |date('d/m/Y') }}</td>
+            <td>{{ seguimiento.tipo.nombre }}</td>
+            <td>
+                <i class="fa fa-eye buttonable" title="Ver" onclick="viewSeguimientoFile(this)">
+                    <input type="hidden" id="descripcion" value="{{ seguimiento.descripcion }}"/>
+                    <input type="hidden" id="empleado" value="{{ seguimiento.empleado.apellido }}, {{ seguimiento.empleado.nombre }}"/>
+                    <input type="hidden" id="fecha" value="{{ seguimiento.fechaAlta | date('d/m/Y') }}"/>
+                    <input type="hidden" id="tipo" value="{{ seguimiento.tipo.nombre }}"/>
+                </i>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

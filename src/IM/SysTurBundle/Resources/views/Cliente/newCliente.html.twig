@@ -1,0 +1,131 @@
+{% extends 'IMSysTurBundle:Default:base.html.twig' %}
+
+{% block title %}
+    <title>{{ parameters.sysName}} :: Nuevo Cliente</title>
+{% endblock %}
+
+{% block content -%}
+<div class="banner-in">
+    <div class="container">
+	<div class="banner-top">
+            <h6><a href="index.html">NUEVO CLIENTE</a> / <span>ADMINISTRACION</span></h6>
+	</div>
+    </div>
+</div>
+
+<div class="content">
+        <div class="container">
+                <div class="content-top">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Ut in consectetur est, sit amet tincidunt leo. 
+                        Proin sit amet ultrices ligula. Phasellus nec elementum erat. 
+                        In hac habitasse platea dictumst. 
+                        In consequat vel ex vel facilisis. 
+                        Morbi iaculis dictum varius. 
+                        Curabitur ut orci a erat viverra cursus ut at ligula. 
+                        Integer ut venenatis mauris, nec ultrices justo.
+                    </p>
+                    <p>&nbsp;</p>
+                    
+                    {# Headers de las tabs #}
+                    <div id="tabs" class="tabs">
+                        <div class="tab-0">
+                                <input type="radio" id="tab-0" name="tab-group" checked>
+                                <label for="tab-0">Datos Personales</label>
+                        </div>
+                    </div>
+                    
+                    {# Contenido de las tabs #}
+                    <div id="tabs-content">
+                        <div id="content-tab-0" class="tab-content" style="display: block;">
+                            <div class="bevel2">
+                                <div class="contact-grid">
+                                    {# form start #}
+                                    {{ form_start(edit_form) }}
+                                    
+                                    {# errores #}
+                                    <div class="errores">
+                                        {{ form_errors(edit_form) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-6">
+                                        {{ form_label(edit_form.apellido) }}
+                                        {{ form_widget(edit_form.apellido) }}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form_label(edit_form.nombres) }}
+                                        {{ form_widget(edit_form.nombres) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.dni) }}
+                                        {{ form_widget(edit_form.dni) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.cuil) }}
+                                        {{ form_widget(edit_form.cuil) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.fechaNacimiento, 'Fecha de Nacimiento') }}
+                                        {{ form_widget(edit_form.fechaNacimiento, {'attr': {'class': 'fecha'}}) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-9">
+                                        {{ form_label(edit_form.direccion) }}
+                                        {{ form_widget(edit_form.direccion) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.cp, 'Código Postal') }}
+                                        {{ form_widget(edit_form.cp) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.localidad) }}
+                                        {{ form_widget(edit_form.localidad) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.provincia) }}
+                                        {{ form_widget(edit_form.provincia) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.pais) }}
+                                        {{ form_widget(edit_form.pais) }}
+                                    </div>
+                                    
+                                    {# bloque de datos #}
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.tipoCliente, 'Tipo de Cliente') }}
+                                        {{ form_widget(edit_form.tipoCliente) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.categoria) }}
+                                        {{ form_widget(edit_form.categoria) }}
+                                    </div>
+                                    <div class="col-3">
+                                        {{ form_label(edit_form.tipoIva, 'Situación ante el IVA') }}
+                                        {{ form_widget(edit_form.tipoIva) }}
+                                    </div>
+                                    
+                                    {# bloque de fin de formulario #}
+                                    <div class="col-12">
+                                        <div class="hide">{{ form_rest(edit_form) }}</div>
+                                        <p>&nbsp;</p>
+                                        <button class="sf-button" type="submit">Guardar datos</button>
+                                        <a class="sf-button" href="{{ path('IMSysTurBundle_ListarClientes') }}">Volver sin grabar</a>
+                                    </div>
+                                    
+                                    {# fin del formulario #}
+                                    {{ form_end(edit_form) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                                
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'IMSysTurBundle:Default:base.html.twig' %}
+
+{% block title %}
+    <title>{{ parameters.sysName}} :: Nuevo adjunto</title>
+{% endblock %}
+
+{% block content %}
+<div class="banner-in">
+    <div class="container">
+	<div class="banner-top">
+            <h6><a href="index.html">EDITAR DOCUMENTO</a> / <span>ADMINISTRACION</span></h6>
+	</div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="content-top">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Ut in consectetur est, sit amet tincidunt leo. 
+                Proin sit amet ultrices ligula. Phasellus nec elementum erat. 
+                In hac habitasse platea dictumst. 
+                In consequat vel ex vel facilisis. 
+                Morbi iaculis dictum varius. 
+                Curabitur ut orci a erat viverra cursus ut at ligula. 
+                Integer ut venenatis mauris, nec ultrices justo.
+            </p>
+            <p>&nbsp;</p>
+
+            <div class="bevel2">
+                <div class="contact-grid">
+                    {# form start #}
+                    {{ form_start(edit_form) }}
+
+                    {# errores #}
+                    <div class="errores">
+                        {{ form_errors(edit_form) }}
+                    </div>
+
+                    {# bloque de datos #}
+                    <div class="col-12">
+                        {{ form_errors(edit_form.file) }}
+                        {{ form_label(edit_form.file, 'Imagen') }}
+                        {{ form_widget(edit_form.file) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_errors(edit_form.nota) }}
+                        {{ form_label(edit_form.nota, 'Nota') }}
+                        {{ form_widget(edit_form.nota) }}
+                    </div>
+
+                    {# bloque de fin de formulario #}
+                    <div class="col-12">
+                        <div class="hide">{{ form_rest(edit_form) }}</div>
+                        <p>&nbsp;</p>
+                        <button class="sf-button" type="submit">Guardar datos</button>
+                        <a class="sf-button" href="{{ path('IMSysTurBundle_editDocumento', {'id':documento.id,'filter':filter}) }}">Volver sin grabar</a>
+                    </div>
+
+                    {# fin del formulario #}
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+IMSysTurBundle_ListarClientes:
+    path:     /listar/{filter}
+    defaults: { _controller: "IMSysTurBundle:Cliente:index", filter: "" }
+
+IMSysTurBundle_NuevoCliente:
+    path:     /new
+    defaults: { _controller: "IMSysTurBundle:Cliente:new" }
+
+IMSysTurBundle_createCliente:
+    path:     /create
+    defaults: { _controller: "IMSysTurBundle:Cliente:create" }
+    methods:  POST
+
+IMSysTurBundle_EditCliente:
+    path:     /{id}/edit/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:Cliente:edit" }
+
+IMSysTurBundle_UpdateCliente:
+    path:     /{id}/update/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:Cliente:update" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_DeleteCliente:
+    path:     /{id}/delete/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:Cliente:delete" }
+
+IMSysTurBundle_GetClientes:
+    path:   /getclientes/{filter}
+    defaults: { _controller: "IMSysTurBundle:Cliente:getClientes" }

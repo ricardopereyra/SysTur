@@ -1,0 +1,63 @@
+IMSysTurbundle_ListarFile:
+    path:     /listar/{filter}
+    defaults: { _controller: "IMSysTurBundle:File:index", filter: "" }
+
+IMSysTurBundle_GetFiles:
+  path:     /getfiles/{filter}
+  defaults: { _controller: "IMSysTurBundle:File:getFiles" }
+
+admin_file_show:
+    path:     /{id}/show
+    defaults: { _controller: "IMSysTurBundle:File:show" }
+
+IMSysTurBundle_NuevoFile:
+    path:     /new
+    defaults: { _controller: "IMSysTurBundle:File:new" }
+
+admin_file_create:
+    path:     /create
+    defaults: { _controller: "IMSysTurBundle:File:create" }
+    methods:  POST
+
+IMSysTurBundle_EditFile:
+    path:     /{id}/edit/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:File:edit" }
+
+IMSysTurBundle_UpdateFile:
+    path:     /{id}/update/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:File:update" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_DeleteFile:
+    path:     /{id}/delete/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:File:delete" }
+    methods:  [POST, DELETE]
+
+IMSysTurBundle_AsignarCliente:
+    path:   /{id}/asignarcliente/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:File:asignarCliente" }
+
+IMSysTurBundle_getClienteTypeahead:
+    path: /getclienteta
+    defaults: { _controller: "IMSysTurBundle:File:getClienteTypeahead" }
+    methods:  [GET]
+
+IMSysTurBundle_UpdateClientesXFile:
+    path:  /{id}/updatecientexfile/filter={filter}
+    defaults: { _controller: "IMSysTurBundle:File:updateClienteXFile" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_GetClientesXFile:
+    path:   /{id}/getclientesxfile
+    defaults: { _controller: "IMSysTurBundle:File:getClientesXFile" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_DeleteClientesXFile:
+    path:   /{id}/deleteclientesxfile
+    defaults: { _controller: "IMSysTurBundle:File:deleteClientesXFile" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_GetSeguimientoFile:
+    path: /{id}/getseguimientofile
+    defaults: { _controller: "IMSysTurBundle:File:getSeguimientoFile" }
+    methods: [POST, PUT]

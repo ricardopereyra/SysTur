@@ -1,0 +1,12 @@
+IMSysTurBundle_newAttachement:
+    path:     /documentos/{id_documento}/new/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Attachement:new" }
+
+IMSysTurBundle_createAttachement:
+    path:     /documentos/{id_documento}/create/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Attachement:create" }
+    methods:  POST
+
+IMSysTurBundle_deleteAttachement:
+    path:     /{id}/delete/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Attachement:delete" }

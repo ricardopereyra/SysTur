@@ -1,0 +1,21 @@
+IMSysTurBundle_newDocumento:
+    path:     /new/{idCliente}/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:Documento:new" }
+
+IMSysTurBundle_createDocumento:
+    path:     /create/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Documento:create" }
+    methods:  POST
+
+IMSysTurBundle_editDocumento:
+    path:     /{id}/edit/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:Documento:edit" }
+
+IMSysTurBundle_updateDocumento:
+    path:     /{id}/update/ref/{filter}
+    defaults: { _controller: "IMSysTurBundle:Documento:update" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_deleteDocumento:
+    path:     /{id}/delete/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Documento:delete" }

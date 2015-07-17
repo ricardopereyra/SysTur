@@ -1,0 +1,25 @@
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Direccion</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Dni</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in clientes %}
+        <tr>
+            <td>{{ entity.apellido | upper }}, {{ entity.nombres }}</td>
+            <td>{{ entity.direccion }} - {{ entity.localidad }}, {{ entity.provincia }}, {{ entity.getPais.getNombre }}</td>
+            <td>{% if entity.fechaNacimiento %}{{ entity.fechaNacimiento|date('d/m/Y') }}{% endif %}</td>
+            <td>{{ entity.dni }}</td>
+            <td>
+                <a href="{{ path('IMSysTurBundle_EditCliente', { 'id': entity.id, 'filter':filter }) }}">Editar</a> |
+                <a href="{{ path('IMSysTurBundle_DeleteCliente', { 'id': entity.id, 'filter':filter }) }}">Eliminar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

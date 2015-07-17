@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - systur@localhost" uuid="f6a64fa2-c332-4a75-b5c5-cc76a7fa99dc">
+    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="systur"/>
+    <table name="Attachement" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tabla" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="path" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="nota" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="id_source" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Categoria" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_3BA1A2B94E10122D" table="Cliente" schema="" catalog="systur" columns="categoria"/>
+    </table>
+    <table name="Cliente" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pais" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="categoria" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="apellido" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nombres" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cp" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="localidad" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="provincia" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="direccion" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="fecha_nacimiento" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="dni" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cuil" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="tipoIva" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tipoCliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fechaAlta" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaBaja" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaModificacion" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3BA1A2B94E10122D" columns="categoria" ref-table="Categoria" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_3BA1A2B9572BB322" columns="tipoCliente" ref-table="TipoCliente" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_3BA1A2B97E5D2EFF" columns="pais" ref-table="Pais" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_3BA1A2B9CBC4BBF" columns="tipoIva" ref-table="TipoIva" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_903C75BCF41C9B25" table="ClienteFile" schema="" catalog="systur" columns="cliente"/>
+      <exported-key name="FK_DE372B6AF41C9B25" table="Contacto" schema="" catalog="systur" columns="cliente"/>
+      <exported-key name="FK_3440AC64F41C9B25" table="Documento" schema="" catalog="systur" columns="cliente"/>
+      <index name="IDX_3BA1A2B94E10122D" unique="false" columns="categoria"/>
+      <index name="IDX_3BA1A2B9572BB322" unique="false" columns="tipoCliente"/>
+      <index name="IDX_3BA1A2B97E5D2EFF" unique="false" columns="pais"/>
+      <index name="IDX_3BA1A2B9CBC4BBF" unique="false" columns="tipoIva"/>
+    </table>
+    <table name="ClienteFile" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="file" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="cliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="propietario" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_903C75BC8C9F3610" columns="file" ref-table="File" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_903C75BCF41C9B25" columns="cliente" ref-table="Cliente" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_903C75BC8C9F3610" unique="false" columns="file"/>
+      <index name="IDX_903C75BCF41C9B25" unique="false" columns="cliente"/>
+    </table>
+    <table name="Contacto" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="data" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="tipoContacto" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="fechaAlta" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaBaja" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaModificacion" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_DE372B6AB986EBB7" columns="tipoContacto" ref-table="TipoContacto" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_DE372B6AF41C9B25" columns="cliente" ref-table="Cliente" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_DE372B6AB986EBB7" unique="false" columns="tipoContacto"/>
+      <index name="IDX_DE372B6AF41C9B25" unique="false" columns="cliente"/>
+    </table>
+    <table name="Documento" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="numero" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="fechaEmision" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="fechaVencimiento" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="imagen" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fechaAlta" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaBaja" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaModificacion" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <column name="tipoDocumento" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3440AC64CC45B3CD" columns="tipoDocumento" ref-table="TipoDocumento" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_3440AC64F41C9B25" columns="cliente" ref-table="Cliente" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_3440AC64CC45B3CD" unique="false" columns="tipoDocumento"/>
+      <index name="IDX_3440AC64F41C9B25" unique="false" columns="cliente"/>
+    </table>
+    <table name="Empleado" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apellido" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dni" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="telefono" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="categoria" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fechaAlta" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="fechaBaja" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="fechaModificacion" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="File" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="partida" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="retorno" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="destino" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fechaAlta" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaBaja" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fechaModificacion" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_903C75BC8C9F3610" table="ClienteFile" schema="" catalog="systur" columns="file"/>
+      <exported-key name="FK_872E97CA8C9F3610" table="Seguimiento" schema="" catalog="systur" columns="file"/>
+    </table>
+    <table name="Pais" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_3BA1A2B97E5D2EFF" table="Cliente" schema="" catalog="systur" columns="pais"/>
+    </table>
+    <table name="Parameters" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="sys_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_host" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_webmail" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_mailport" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_mailhost" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_mailenc" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_mailuser" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sys_mailpass" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="RelacionFamiliar" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Seguimiento" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="file" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tipo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="descripcion" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="empleado" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_872E97CA702D1D47" columns="tipo" ref-table="TipoSeguimiento" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_872E97CA8C9F3610" columns="file" ref-table="File" ref-schema="" ref-catalog="systur" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IDX_872E97CA702D1D47" unique="false" columns="tipo"/>
+      <index name="IDX_872E97CA8C9F3610" unique="false" columns="file"/>
+    </table>
+    <table name="TipoCliente" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_3BA1A2B9572BB322" table="Cliente" schema="" catalog="systur" columns="tipoCliente"/>
+    </table>
+    <table name="TipoContacto" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_DE372B6AB986EBB7" table="Contacto" schema="" catalog="systur" columns="tipoContacto"/>
+    </table>
+    <table name="TipoDocumento" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_3440AC64CC45B3CD" table="Documento" schema="" catalog="systur" columns="tipoDocumento"/>
+    </table>
+    <table name="TipoIva" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_3BA1A2B9CBC4BBF" table="Cliente" schema="" catalog="systur" columns="tipoIva"/>
+    </table>
+    <table name="TipoSeguimiento" schema="" catalog="systur" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_872E97CA702D1D47" table="Seguimiento" schema="" catalog="systur" columns="tipo"/>
+    </table>
+  </data-source>
+</component>

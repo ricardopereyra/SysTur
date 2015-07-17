@@ -1,0 +1,30 @@
+im_sys_tur_admin_file:
+    resource: "@IMSysTurBundle/Resources/config/routing/file.yml"
+    prefix:   /admin/file
+
+im_sys_tur_admin_contactos:
+    resource: "@IMSysTurBundle/Resources/config/routing/contacto.yml"
+    prefix:   /admin/contactos
+
+im_sys_tur_admin_attachement:
+    resource: "@IMSysTurBundle/Resources/config/routing/attachement.yml"
+    prefix:   /admin/attachement
+
+im_sys_tur_documento:
+    resource: "@IMSysTurBundle/Resources/config/routing/documento.yml"
+    prefix:   /admin/documentos
+
+im_sys_tur_cliente:
+    resource: "@IMSysTurBundle/Resources/config/routing/cliente.yml"
+    prefix:   /admin/clientes
+
+IMSysTurBundle_Homepage:
+    path:     /
+    defaults: { _controller: IMSysTurBundle:Default:index }
+    
+IMSysTurBundle_Login:
+    path:   /login
+    defaults: { _controller: IMSysTurBundle:Default:login }
+    
+IMSysTurBundle_CheckLogin:
+    path:   /checklogin

@@ -1,0 +1,50 @@
+#tabs {
+    position: relative;
+    clear: both;
+    display: inline-block;
+}
+#tabs [class^=tab-] {
+    float: left;
+}
+#tabs label {
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+	cursor: pointer;
+}
+#tabs [type=radio] {
+    display: none;
+}
+#tabs-content
+{
+	position: relative;
+	display: block;
+}
+#tabs input[type=radio]:checked ~ label {
+    background-color: #BFCFFF;
+	
+	text-decoration: none;
+	font-weight: normal;
+    /*border-bottom: 1px solid white;*/
+    z-index: 2;
+}
+#tabs-content .tab-content
+{
+	display: none;
+	-moz-transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+}
+/************ Combo Box *************/
+#combo
+{
+	float: right;
+}
+
+#combo #combo-selector
+{
+	width: 200px;
+}

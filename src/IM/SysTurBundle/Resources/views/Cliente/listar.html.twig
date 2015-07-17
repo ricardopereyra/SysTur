@@ -1,0 +1,68 @@
+{% extends 'IMSysTurBundle:Default:base.html.twig' %}
+
+{% block content %}
+<div class="banner-in">
+    <div class="container">
+	<div class="banner-top">
+            <h6><a href="index.html">CLIENTES</a> / <span>ADMINISTRACION</span></h6>
+	</div>
+    </div>
+</div>
+
+<div class="content">
+        <div class="container">
+                <div class="content-top">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Ut in consectetur est, sit amet tincidunt leo. 
+                        Proin sit amet ultrices ligula. Phasellus nec elementum erat. 
+                        In hac habitasse platea dictumst. 
+                        In consequat vel ex vel facilisis. 
+                        Morbi iaculis dictum varius. 
+                        Curabitur ut orci a erat viverra cursus ut at ligula. 
+                        Integer ut venenatis mauris, nec ultrices justo.
+                    </p>
+                    <div class="bevel1">
+                        <div class="contact-grid">
+                            <form action="" method="post" id="filterClientes">
+                                <div class="input-inline">
+                                    <input type="text" id="texto" name="texto" value="{{filter}}" placeholder="Ingrese el texto para buscar clientes"/>
+                                </div>
+
+                                <button type="submit" class="sf-button" id="boton">
+                                    <span class="border-l">
+                                        <span class="border-r">
+                                            <span class="btn-bg">Buscar</span>
+                                        </span>
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div id="listado" class="contenido">
+                        {# Aquí va el contenido de la tabla de clientes #}
+                        {% if filter != "" %}
+                            {{ render(controller('IMSysTurBundle:Cliente:getClientes', {'filter':filter} )) }}
+                        {% endif %}
+                    </div>
+                    
+                    {# bloque con botones inferiores #}
+                    <p>&nbsp;</p>
+                    <a class="sf-button" href="{{ path('IMSysTurBundle_NuevoCliente') }}">Agregar un nuevo Cliente</a>
+                </div>
+        </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#boton').click(function(event){
+                event.preventDefault(); //cancela el comportamiento por defecto
+                valor = $('#texto').val();
+                $('#listado').load("{{parameters.sysHost}}" + "/admin/clientes/getclientes/" + escape(valor)); //carga por ajax
+            });
+        });
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+im_sys_tur:
+    resource: "@IMSysTurBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#app:
+#    resource: "@AppBundle/Controller/"
+#    prefix: /app
+#    type:     annotation

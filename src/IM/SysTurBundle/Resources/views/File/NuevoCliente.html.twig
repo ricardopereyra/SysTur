@@ -1,0 +1,63 @@
+{% extends 'IMSysTurBundle:Default:base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block title %}
+    <title>{{ parameters.sysName}} :: Nuevo Cliente en File</title>
+{% endblock %}
+
+{% block content %}
+<div class="banner-in">
+    <div class="container">
+        <div class="banner-top">
+            <h6><a href="index.html">ASIGNAR CLIENTE</a> / <span>ADMINISTRACION</span></h6>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="content-top">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Ut in consectetur est, sit amet tincidunt leo.
+                Proin sit amet ultrices ligula. Phasellus nec elementum erat.
+                In hac habitasse platea dictumst.
+                In consequat vel ex vel facilisis.
+                Morbi iaculis dictum varius.
+                Curabitur ut orci a erat viverra cursus ut at ligula.
+                Integer ut venenatis mauris, nec ultrices justo.
+            </p>
+            <p>&nbsp;</p>
+            {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+            <!-- Bloque superior -->
+            <div id="top-container" class="col-md-12">
+                <div class="col-md-12 form-group">
+                    <label for="cliente">Seleccione un cliente existente</label>
+                    <!--<input id="cliente" type="text" class="form-control" placeholder="Seleccione un cliente" />
+                    <input type="hidden" name="clienteID" id="ClienteID" value="" />
+                    -->
+                    <input id="boxcliente" name="boxcliente" type="text" class="form-control" placeholder="Ingrese el cliente" />
+                    <br />
+                    <button id="btnAsignar" name="btnAsignar" class="btn btn-primary btn-xs">Asignar este cliente</button>
+                </div>
+            </div>
+            <!-- Bottom container -->
+            <div id="bottom-container" class="col-md-12">
+                <p>O ingrese los datos para crear un nuevo cliente</p>
+                <div class="col-md-12">
+                    {{ form_row(form.apellido) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.nombres) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.dni) }}
+                </div>
+                <br />
+                <button id="btnAgregar" name="btnAgregar" class="btn btn-primary btn-xs">Agregar nuevo y asignar</button>
+            </div>
+            <p>&nbsp;</p>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    {% endblock %}
+

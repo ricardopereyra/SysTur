@@ -1,0 +1,127 @@
+{# src/IM/SysTurBundle/Resources/views/Default/base.html.twig #}
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+{% block title %}
+    <title>IM Systur :: Lozada Iassa-Robles </title>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/tabs.js') }}"></script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="{{ asset('js/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('js/bootbox.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script-->
+{% endblock %}
+
+{% block keywords %}
+    <meta name="keywords" content="turismo im tourism sistema" />
+{% endblock %}
+
+<!--link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" /-->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{asset('css/theme.css')}}" rel="stylesheet" type="text/css" media="all" />	
+<link href="{{asset('css/tabs.css')}}" rel="stylesheet" type="text/css" media="all" />	
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{asset('css/flexslider.css')}}" type="text/css" media="screen" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body> 
+	<!--header-->	
+<div class="header">
+	<div class="header-top">
+        <div class="container">
+		<div class="header-top-top">
+			<div class=" header-top-left">
+				<p>24/7 Support <span>010-25418796</span></p>	 		
+			</div>
+  	         <div class=" header-top-right">
+			  	   	<select  class="drop-down "> 
+				       <option value="1">Dollar</option>
+				       <option value="2">Euro</option>
+					</select>
+   				    <select class="drop-down drop-down-in">
+						<option value="1">English</option>
+						<option value="2">French</option>
+						<option value="3">German</option>
+					</select>
+   			   <div class="clearfix"></div>
+   			 </div>
+			
+			<div class="clearfix"></div>
+       </div>
+    </div>
+	</div>
+      <div class="header_bottom"> 
+	  <div class="container">
+	   <div class="header-bottom-top">
+       <div class=" logo">
+   	   	 <a href="index.html"><img src="{{ asset('images/logo.png')}}" alt=""/></a>
+   	   </div>
+   
+	   	<div class="top-nav">
+				<span class="menu"><img src="{{ asset('images/menu.png') }}" alt=""> </span>
+
+     		 		<ul>
+						<li  class="active"><a href="index.html">Home</a></li>
+     		 			 <li><a href="booking.html">Booking</a></li>
+					  <li><a href="404.html">Services</a></li>
+					  <li><a href="projects.html">Projects</a></li>
+					  <li><a href="blog.html">Blog</a></li>
+					  <li><a href="mail.html">Mail</a></li>
+     		 		</ul>
+					<script>
+						$("span.menu").click(function(){
+							$(".top-nav ul").slideToggle(500, function(){
+							});
+						});
+					</script>
+
+     		 	</div>
+
+   	  <div class="clearfix"></div>
+   	  </div>
+	  </div>
+	</div>	
+</div>
+        
+{% block content %}
+{% endblock %}
+        
+ 	<div class="footer">
+				<div class="container">
+				<div class="footer-bottom-at">
+					<div class="col-md-6 footer-grid">
+						<h3>Turistik</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</div>
+					<div class="col-md-6 footer-grid-in">
+					<ul class="footer-nav">
+						 <li ><a href="index.html">Home</a>|</li>
+					  <li><a href="booking.html">Booking</a>|</li>
+					  <li><a href="404.html">Services</a>|</li>
+					  <li><a href="projects.html">Projects</a>|</li>
+					  <li><a href="blog.html">Blog</a>|</li>
+					  <li><a href="mail.html">Mail</a></li>	
+					</ul>
+					<p class="footer-class"> © 2015 Turistik Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				</div>
+			</div>
+</body>
+</html>

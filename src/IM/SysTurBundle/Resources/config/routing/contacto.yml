@@ -1,0 +1,29 @@
+admin_contactos:
+    path:     /
+    defaults: { _controller: "IMSysTurBundle:Contacto:index" }
+
+admin_contactos_show:
+    path:     /{id}/show
+    defaults: { _controller: "IMSysTurBundle:Contacto:show" }
+
+IMSysTurBundle_newContacto:
+    path:     /new/{idCliente}/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Contacto:new" }
+
+IMSysTurBundle_createContacto:
+    path:     /create/{idCliente}/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Contacto:create" }
+    methods:  POST
+
+IMSysTurBundle_editContacto:
+    path:     /{id}/edit/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Contacto:edit" }
+
+IMSysTurBundle_updateContacto:
+    path:     /{id}/update/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Contacto:update" }
+    methods:  [POST, PUT]
+
+IMSysTurBundle_deleteContacto:
+    path:     /{id}/delete/ref={filter}
+    defaults: { _controller: "IMSysTurBundle:Contacto:delete" }

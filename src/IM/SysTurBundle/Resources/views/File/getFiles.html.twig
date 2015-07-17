@@ -1,0 +1,25 @@
+<table class="records_list">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Destino</th>
+        <th>Partida</th>
+        <th>Retorno</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for file in files %}
+        <tr>
+            <td>{{ file.nombre }}</td>
+            <td>{{ file.destino.nombre }}</td>
+            <td>{% if file.partida %}{{ file.partida|date('d/m/Y') }}{% endif %}</td>
+            <td>{% if file.retorno %}{{ file.retorno|date('d/m/Y') }}{% endif %}</td>
+            <td>
+                <a href="{{ path('IMSysTurBundle_EditFile', { 'id': file.id, 'filter':filter }) }}">Editar</a> |
+                <a href="{{ path('IMSysTurBundle_DeleteFile', { 'id': file.id, 'filter':filter }) }}">Eliminar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

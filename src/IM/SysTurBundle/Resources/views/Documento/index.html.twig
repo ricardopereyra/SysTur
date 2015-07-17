@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Documento list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Fechaemision</th>
+                <th>Fechavencimiento</th>
+                <th>Descripcion</th>
+                <th>Imagen</th>
+                <th>Fechaalta</th>
+                <th>Fechabaja</th>
+                <th>Fechamodificacion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('documento_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.numero }}</td>
+                <td>{% if entity.fechaEmision %}{{ entity.fechaEmision|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaVencimiento %}{{ entity.fechaVencimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.descripcion }}</td>
+                <td>{{ entity.imagen }}</td>
+                <td>{% if entity.fechaAlta %}{{ entity.fechaAlta|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaBaja %}{{ entity.fechaBaja|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaModificacion %}{{ entity.fechaModificacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('documento_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('documento_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('documento_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
